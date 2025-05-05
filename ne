@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Password Protected Site</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            min-height: 100vh;
+        }
+        .hidden-content {
+            display: none;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center">
+    <div class="max-w-md w-full mx-4 my-8">
+        <!-- Login Screen -->
+        <div id="login-screen" class="bg-white rounded-xl shadow-xl p-8 transition-all">
+            <div class="text-center mb-6">
+
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <label for="demo-password" class="block text-sm font-medium text-gray-700 mb-1">Demo Password</label>
+                <input type="text" id="demo-password" placeholder="Enter 'demo123' to continue" 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <p class="text-xs text-gray-500 mt-1">Hint: The password is "demo123"</p>
+            </div>
+            
+            <button id="login-btn" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors">
+                Enter Demo Site
+            </button>
+        </div>
+
+        <!-- Protected Content -->
+        <div id="protected-content" class="hidden-content bg-white rounded-xl shadow-xl p-8 transition-all">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-gray-800">Welcome to the Demo</h1>
+                <button id="logout-btn" class="text-sm bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-md transition-colors">
+                    Log Out
+                </button>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <h2 class="font-bold text-indigo-800 mb-2">Protected Content</h2>
+                    <p class="text-gray-700">This is an example of content that would normally be protected behind a real authentication system.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-green-800 mb-1">Section 1</h3>
+                        <p class="text-sm text-gray-600">Sample protected information would go here.</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-blue-800 mb-1">Section 2</h3>
+                        <p class="text-sm text-gray-600">More confidential content example.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h3 class="font-bold text-purple-800 mb-2">Important Notes</h3>
+                    <p class="text-gray-700">In a real application, authentication would be handled securely on a server with proper encryption and security measures.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('login-btn').addEventListener('click', function() {
+            const password = document.getElementById('demo-password').value;
+            if (password === 'demo123') {
+                document.getElementById('login-screen').classList.add('hidden-content');
+                document.getElementById('protected-content').classList.remove('hidden-content');
+            } else {
+                alert('Incorrect password! Hint: Try "demo123"');
+            }
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            document.getElementById('protected-content').classList.add('hidden-content');
+            document.getElementById('login-screen').classList.remove('hidden-content');
+            document.getElementById('demo-password').value = '';
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93b3a8fd8714a31a',t:'MTc0NjQ4Mzk5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
